@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran app</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            color: #fff;
+            background-color: #DAFFFB;
+            
+       
+        }
+        .card{
+            width: 100vw;
+            height: 15vh;
+            text-align: center;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+background-color:#176B87;
+
+        }
+        .table{
+            text-align: center;
+            margin: 10px;
+        }
+
+    .content{
+        padding: 30px;
+        margin: 20px;
+    }
+    .cd{
+        display: flex;
+        justify-content: space-around;
+        width: 90%;
+        height: 100%;
+padding: 2px;
+        margin: 20px;
+        margin-left: 10px;
+        background-color: #64CCC5;
+        border-radius: 10px;
+        align-items: center;
+        
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Al-quran Murotal</h1>
+        </div>
+
+        <div class="content"></div>
+
+
+
+
+        <!-- <table class="table">
+            <thead class="table">
+                <th>Nama Surat</th>
+                <th>Arti surat</th>
+                <th>Surat ke</th>
+                <th>Pembacaan</th>
+                <th>Jumblah surat</th>
+            </thead>
+            <tbody id="list-data">
+
+            </tbody>
+        </table> -->
+
+    </div>
+
+
+
+
+    <script>
+
+        // fetch
+
+        const url ='https://raw.githubusercontent.com/penggguna/QuranJSON/master/quran.json'
+        const list = document.getElementById('list-data')
+        const content = document.querySelector('.content')
+
+        fetch(url).then(response => response.json()).then(data => {
+            // data.forEach(el => {
+
+            //         const row = document.createElement('tr')
+
+            //     const nama = document.createElement('td')
+            //     nama.innerText = el.name
+
+            //     const arti = document.createElement('td')
+            //     arti.innerText = el.name_translations.id
+
+            //     const numberofsurah = document.createElement('td')
+            //     numberofsurah.innerText = el.number_of_surah
+
+            //     const recitation = document.createElement('audio');
+            //     recitation.setAttribute('controls','')
+            //     recitation.setAttribute('src',el.recitation)
+               
+                
+
+
+            //     const number_of_ayah = document.createElement('td')
+            //     number_of_ayah.innerText = el.number_of_ayah
+
+            //     list.append(row)
+            //     row.append(nama)
+            //     row.append(arti)
+            //     row.append(numberofsurah)
+            //     row.append(recitation)
+            //     row.append(number_of_ayah)
+            //     });
+           
+            data.forEach(el => {
+
+const data = document.createElement('div')
+data.classList.add('cd')
+
+const nama = document.createElement('p')
+nama.innerText = el.name
+
+const arti = document.createElement('p')
+arti.innerText = el.name_translations.ar
+
+const numberofsurah = document.createElement('p')
+numberofsurah.innerText = el.number_of_surah
+
+const br = document.createElement('br')
+
+const recitation = document.createElement('audio');
+recitation.setAttribute('controls','')
+recitation.setAttribute('src',el.recitation)
+
+
+const text = document.createElement('div')
+
+const sound = document.createElement('div')
+
+const number_of_ayah = document.createElement('p')
+number_of_ayah.innerText = el.number_of_ayah
+
+const place = document.createElement('p')
+place.innerText = el.place
+
+content.append(data)
+data.append(numberofsurah)
+
+data.append(text)
+text.append(nama)
+text.append(arti)
+data.append(place)
+data.append(sound)
+sound.append(recitation)
+text.append(number_of_ayah)
+
+});
+
+        })
+    </script>
+</body>
+</html>
